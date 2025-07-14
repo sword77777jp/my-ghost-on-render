@@ -1,0 +1,25 @@
+{
+  "url": "https://your-ghost-on-render.onrender.com",
+  "database": {
+    "client": "mysql",
+    "connection": {
+      "host": "aws.connect.psdb.cloud",
+      "user": "plpgoc2zy2akywpfo52x",
+      "password": "{{PASSWORD}}",
+      "database": "ghost-db"
+    }
+  },
+  "mail": {
+    "transport": "Direct"
+  },
+  "logging": {
+    "level": "info",
+    "rotation": {
+      "enabled": true
+    }
+  },
+  "process": "systemd",
+  "paths": {
+    "contentPath": "/var/lib/ghost/content"
+  }
+}
