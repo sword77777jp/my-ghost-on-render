@@ -1,21 +1,25 @@
-# Ghost公式の安定バージョンを使用
+# see versions at https://hub.docker.com/_/ghost
 FROM ghost:5.14.1
 
-# 作業ディレクトリをGhostのデフォルトに設定
+# 作業ディレクトリ
 WORKDIR /var/lib/ghost
 
-# プロジェクトの全ファイルをコンテナにコピー
+# コンテナに全てコピー
 COPY . .
 
-# パスワードをビルド時に受け取り、環境変数として定義
+# パスワードを渡してテンプレートから config.production.json を生成
 ARG DB_PASSWORD
 ENV DB_PASSWORD=${DB_PASSWORD}
-
-# config.template.json の {{PASSWORD}} を置換して config.production.json を生成
 RUN sed "s|{{PASSWORD}}|${DB_PASSWORD}|g" config.template.json > config.production.json
 
-# データベース再作成を防ぐための環境変数（Ghost内部で参照される）
+# Ghostにデータベース作成をさせないように環境変数で明示的に設定
+ENV database__client=mysql
+ENV database__connection__host=aws.connect.psdb.cloud
+ENV database__connection__user=plpgoc2zy2akywpfo52x
+ENV database__connection__password=${DB_PASSWORD}
+ENV database__connection__database=ghost-db
+ENV database__connection__ssl__rejectUnauthorized=false
 ENV database__createDatabase=false
 
-# Ghost起動（ENTRYPOINTはデフォルトを使用）
+# Ghost起動
 CMD ["node", "current/index.js"]
