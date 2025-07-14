@@ -1,5 +1,5 @@
 {
-  "url": "https://my-ghost-on-render.onrender.com/",
+  "url": "https://your-ghost-on-render.onrender.com",
   "database": {
     "client": "mysql",
     "connection": {
@@ -11,6 +11,19 @@
         "rejectUnauthorized": false
       }
     },
-    "createDatabase": false        ← これを追記
+    "createDatabase": false
+  },
+  "mail": {
+    "transport": "Direct"
+  },
+  "logging": {
+    "level": "info",
+    "rotation": {
+      "enabled": true
+    }
+  },
+  "process": "systemd",
+  "paths": {
+    "contentPath": "/var/lib/ghost/content"
   }
 }
