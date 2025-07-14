@@ -1,5 +1,5 @@
 {
-  "url": "http://localhost:10000",
+  "url": "https://your-app-name.onrender.com",
   "server": {
     "port": 10000,
     "host": "0.0.0.0"
