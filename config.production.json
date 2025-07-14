@@ -6,8 +6,12 @@
       "host": "aws.connect.psdb.cloud",
       "user": "plpgoc2zy2akywpfo52x",
       "password": "{{PASSWORD}}",
-      "database": "ghost-db"
-    }
+      "database": "ghost-db",
+      "ssl": {
+        "rejectUnauthorized": false
+      }
+    },
+    "createDatabase": false
   },
   "mail": {
     "transport": "Direct"
