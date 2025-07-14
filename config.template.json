@@ -1,9 +1,5 @@
 {
-  "url": "https://my-ghost-on-render.onrender.com",
-  "server": {
-    "port": 2368,
-    "host": "0.0.0.0"
-  },
+  "url": "https://my-ghost-on-render.onrender.com/",
   "database": {
     "client": "mysql",
     "connection": {
@@ -12,18 +8,9 @@
       "password": "{{PASSWORD}}",
       "database": "ghost-db",
       "ssl": {
-        "rejectUnauthorized": true
+        "rejectUnauthorized": false
       }
-    }
-  },
-  "mail": {
-    "transport": "Direct"
-  },
-  "logging": {
-    "transports": ["file", "stdout"]
-  },
-  "process": "local",
-  "paths": {
-    "contentPath": "content"
+    },
+    "createDatabase": false        ← これを追記
   }
 }
