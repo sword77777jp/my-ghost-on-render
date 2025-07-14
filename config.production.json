@@ -5,7 +5,7 @@
     "connection": {
       "host": "aws.connect.psdb.cloud",
       "user": "plpgoc2zy2akywpfo52x",
-      "password": process.env.database__connection__password,
+      "password": "{{PASSWORD}}",
       "database": "ghost-db",
       "port": 3306,
       "ssl": {
