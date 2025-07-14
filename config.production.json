@@ -1,5 +1,5 @@
 {
-  "url": "https://your-ghost-url.onrender.com",
+  "url": "https://my-ghost-on-render.onrender.com",
   "database": {
     "client": "mysql",
     "connection": {
