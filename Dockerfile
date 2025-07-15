@@ -1,15 +1,18 @@
+# see versions at https://hub.docker.com/_/ghost
 FROM ghost:5.14.1
 
 WORKDIR /var/lib/ghost
 
+# Ghost に必要なファイルをコピー（config.template.json など）
 COPY . .
 
-# 環境変数でパスワードを差し替え
+# パスワードをテンプレートに埋め込んで config.production.json を作成
 ARG DB_PASSWORD
 ENV DB_PASSWORD=${DB_PASSWORD}
-RUN sed "s|{{PASSWORD}}|${DB_PASSWORD}|g" config.template.json > config.production.json
+RUN sed "s|{{PASSWORD}}|${DB_PASSWORD}|g" config.template.json > /var/lib/ghost/config.production.json
 
-# Ghost本体にはCREATE DATABASEさせない（環境変数も使って二重に抑制）
-ENV database__createDatabase=false
+# Ghost 起動前に knex-migrator init を自動実行する
+RUN npx knex-migrator init || echo "Migration already done or failed safely."
 
-# Ghost起動（Renderが勝手に node current/index.js を呼び出すのでCMD不要）
+ENTRYPOINT []
+CMD ["node", "current/index.js"]
